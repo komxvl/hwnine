@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FilmsONLINE</title>
+    <link rel="stylesheet" href="style/light-theme.css" id="light-theme">
+</head>
+<body>
+<div class="App__body">
+    <div class="App__sidebar">
+        <form class="SearchForm">
+            <input type="text" class="SearchForm__input" id="film-name" placeholder="Search for movies by name...">
+            <button class="SearchForm__btn" type="submit" id="search">search</button>
+        </form>
+       <div class="SearchCategories">
+           <button class="SearchCategories__btn" id = "popular" >popular</button>
+           <button  class="SearchCategories__btn" id="top-rated">top rated</button>
+           <button class="SearchCategories__btn" id="up-coming">upcoming</button>
+           <button id="light-btn" class="SearchCategories__btn themeBtn">Light Theme</button>
+           <button id="dark-btn" class="SearchCategories__btn themeBtn">Dark Theme</button>
+        </div>
+    </div>
+    <div class="MovieList" id="list-item">
+
+    </div>
+</div>
+    <script src="scripts/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+</body>
+</html>
