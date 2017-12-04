@@ -14,13 +14,9 @@ const filmDescription = (filmTex) =>{
     return (filmTex === "") ? "Описание отсутствует" : filmTex.substr(0,100);
 };
 
-
-
 const searchFilm = (e) => {
     e.preventDefault();
     let allFilms = "";
-    console.log(filmName.value);
-    console.log(listItemBlock);
     listItemBlock.innerHTML = '';
     if (filmName.value !== '') {
         fetch('https://api.themoviedb.org/3/search/movie?api_key=' + API_KEY + '&query=' + filmName.value)
@@ -33,13 +29,10 @@ const searchFilm = (e) => {
             ).then(data => {
             console.log("DATA", data);
             const listFilms = data.results;
-            console.log("listFilms", listFilms.length);
-
             if (listFilms.length === 0) {
                 listItemBlock.innerHTML = '<p class="MovieList__msg"> SORRY, WE DIDN\'T FIND ANYTHING (⌣́_⌣̀)</p>';
             } else {
-                listFilms.forEach (function (el) {
-                    console.log("EL",el);
+                listFilms.forEach((el) => {
                     allFilms += `<div class="MovieList__item">
                             <div class="MovieCard">
                                 <span class="MovieCard__rating">${el.vote_average}</span>
@@ -53,14 +46,11 @@ const searchFilm = (e) => {
                             </div>
                         </div>`;
                     listItemBlock.innerHTML = allFilms;
-
                 });
             }
-
         }).catch(error => {
             console.error("Error: ", error);
         });
-
     }
     else{
         alert("Введите название фильма!");
@@ -81,10 +71,7 @@ const filmRating = (param) => {
             }
         ).then(data => {
         const listFilms = data.results;
-        console.log("listFilms", listFilms.length);
-        listFilms.forEach (function (el) {
-            console.log("EL",el);
-
+        listFilms.forEach ((el) => {
             let filmInfo = {
                 vote_average:""+el.vote_average,
                 poster_path: ""+imgFullPath(el.poster_path),
@@ -93,7 +80,6 @@ const filmRating = (param) => {
                 release_date:""+el.release_date.split('-')[0]
             };
 
-            console.log(filmInfo);
             let tmpl = '<div class="MovieList__item"><div class="MovieCard"><span class="MovieCard__rating">{{vote_average}}</span><img class="MovieCard__poster" src={{poster_path}}  alt=""><div class="MovieInfo__info"> <h2 class="MovieInfo__title">{{title}}</h2> <p class="MovieInfo__descr">{{overview}}</p> <p class="MovieInfo__release">Release date:{{release_date}}</p> </div> <button class="MovieCard__btn">+</button></div></div>'
             let htmlOutput = Mustache.to_html(tmpl, filmInfo);
             films +=htmlOutput;
@@ -105,10 +91,6 @@ const filmRating = (param) => {
 popularBtn.addEventListener('click',() => {filmRating("popular")});
 topRated.addEventListener('click',() => {filmRating("top_rated")});
 upComing.addEventListener('click',() => {filmRating("upcoming")});
-
-
-/* */
-
 
 const lightbtn = document.getElementById('light-btn');
 const darkbtn = document.getElementById('dark-btn');
@@ -130,7 +112,6 @@ darkbtn.addEventListener('click',() => {
 
 const toggleClass = (elem) => {
     var ar = document.getElementsByClassName('themeBtn');
-    console.log(elem.classList);
     for (let i of ar) {
         (!i.classList.contains('active')) ? i.classList.add('active') : i.classList.remove('active')
     }
