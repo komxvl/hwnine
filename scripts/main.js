@@ -57,7 +57,7 @@ const searchFilm = (e) => {
     }
     filmName.value = '';
 };
-searchBtn.addEventListener('click',searchFilm);
+searchBtn.addEventListener('click',(e) => {searchFilm(e)});
 
 const filmRating = (param) => {
     listItemBlock.innerHTML = '';
